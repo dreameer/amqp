@@ -22,9 +22,10 @@ amqp.connect('amqp://support:admin@localhost').then(function(conn) {
     });
 
     function logMessage(msg) {
-      console.log(" [x] '%s'", msg.content.toString());
-      fs.open('/var/log/mobile_audit.log','w+',(err,fd)=>{
-         fs.write(fd,msg,()=>{});
+      var message = msg.content.toString();
+      console.log(" [x] '%s'", message);
+      fs.appendFile('/var/log/mobile_audit.log',message,(err)=>{
+         if(err) throw err;
       });
     }
   });
