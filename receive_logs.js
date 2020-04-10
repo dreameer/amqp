@@ -24,7 +24,7 @@ amqp.connect('amqp://support:admin@localhost').then(function(conn) {
     function logMessage(msg) {
       var message = msg.content.toString();
       console.log( message);
-      fs.appendFile('/var/log/mobile_audit.log',message,(err)=>{
+      fs.appendFile('/var/log/mobile_audit.log',message+'\n',(err)=>{
          if(err) throw err;
       });
     }
